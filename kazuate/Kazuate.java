@@ -1,5 +1,7 @@
 package hello.kazuate;
 
+import java.util.Random;
+
 public class Kazuate {
     // プログラムが設定するランダムな2桁の正の整数
     private static int randomNumber;
@@ -16,6 +18,7 @@ public class Kazuate {
         System.out.println( "----------------------------------" );
 
         // ランダムな数値を決定する
+        randomNumber = getRandom2DigitsNumber();
 
         // プレイヤーの入力を受ける
 
@@ -25,5 +28,9 @@ public class Kazuate {
 
         System.out.println( "数当てゲームを終了します．" );
         return;
+    }
+
+    private static int getRandom2DigitsNumber() {
+        return new Random().nextInt( 90 ) + 10;
     }
 }
