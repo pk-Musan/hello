@@ -11,9 +11,7 @@ public class Kazuate {
     // プレイヤーが数値を入力できる回数
     private static final int PLAY_NUM = 5;
 
-    /**
-     * メイン関数
-     */
+    // メイン関数
     public static void main( String[] args ) {
         System.out.println( "数当てゲームを始めます．" );
         System.out.println( "5回以内に当ててください．" );
@@ -49,6 +47,7 @@ public class Kazuate {
                 System.out.println( "----------------------------------" );
             } else {
                 // 勝利判定
+                if ( judgeNumber( predictNum ) ) break;
                 i++;
             }
         }
@@ -62,9 +61,26 @@ public class Kazuate {
         return new Random().nextInt( 90 ) + 10;
     }
 
-    // numが10~99であればtrueを，それ以外であればfalseを返す
+    // numが2桁の正の整数かチェック
     private static boolean validateNum( int num ) {
         if ( num >= 10 && num < 100 ) return false;
         else return true;
+    }
+
+    // numとrandomNumberの値に応じて当たりはずれ(true/false)を示す
+    private static boolean judgeNumber( int num ) {
+        if ( num == randomNumber ) {
+            System.out.println( "当たり" );
+            System.out.println( "----------------------------------" );
+            return true;
+        } else if ( num < randomNumber ) {
+            if ( randomNumber - num >= 20 ) System.out.println( "正解の数より20以上小さいです" );
+            else System.out.println( "正解の数より小さいです" );
+        } else if ( num > randomNumber ) {
+            if ( num - randomNumber >= 20 ) System.out.println( "正解の数より20以上大きいです" );
+            else System.out.println( "正解の数より大きいです" );
+        }
+        System.out.println( "----------------------------------" );
+        return false;
     }
 }
