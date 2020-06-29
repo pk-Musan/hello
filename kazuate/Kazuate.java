@@ -1,6 +1,8 @@
 package hello.kazuate;
 
 import java.util.Random;
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
 
 public class Kazuate {
     // プログラムが設定するランダムな2桁の正の整数
@@ -21,10 +23,28 @@ public class Kazuate {
         randomNumber = getRandom2DigitsNumber();
 
         // プレイヤーの入力を受ける
+        InputStreamReader inputStream = new InputStreamReader( System.in );
+        BufferedReader bufferedReader = new BufferedReader( inputStream );
 
-        // プレイヤーの入力を精査する
+        int i = 0;
+        while ( i < PLAY_NUM ) {
+            System.out.println( i+1 + "回目" );
+            System.out.println( "2桁の正の整数を入力してください．" );
+            
+            int predictNum = 0;
+            try {
+                predictNum = Integer.parseInt( bufferedReader.readLine() );
+            } catch (Exception e) {
+                System.out.println( "数値入力の際にエラーが発生しました．" );
+                System.out.println( "数当てゲームを終了します．" );
+                System.out.println( "----------------------------------" );
+                break;
+            }
 
-        // 勝利判定
+            // プレイヤーの入力を精査する
+
+            // 勝利判定
+        }
 
         System.out.println( "数当てゲームを終了します．" );
         return;
