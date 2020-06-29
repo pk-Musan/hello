@@ -22,15 +22,17 @@ public class Kazuate {
         // ランダムな数値を決定する
         randomNumber = getRandom2DigitsNumber();
 
-        // プレイヤーの入力を受ける
+        // プレイヤーの入力を受けるためのreaderを用意
         InputStreamReader inputStream = new InputStreamReader( System.in );
         BufferedReader bufferedReader = new BufferedReader( inputStream );
 
+        // PLAY_NUM回ループ
         int i = 0;
         while ( i < PLAY_NUM ) {
             System.out.println( i+1 + "回目" );
             System.out.println( "2桁の正の整数を入力してください．" );
             
+            // プレイヤーが予測する値を取得
             int predictNum = 0;
             try {
                 predictNum = Integer.parseInt( bufferedReader.readLine() );
@@ -42,15 +44,27 @@ public class Kazuate {
             }
 
             // プレイヤーの入力を精査する
-
-            // 勝利判定
+            if ( validateNum( predictNum ) ) {
+                System.out.println( "2桁の正の整数を入力し直してください．" );
+                System.out.println( "----------------------------------" );
+            } else {
+                // 勝利判定
+                i++;
+            }
         }
 
         System.out.println( "数当てゲームを終了します．" );
         return;
     }
 
+    // 10 ~ 99の整数を生成
     private static int getRandom2DigitsNumber() {
         return new Random().nextInt( 90 ) + 10;
+    }
+
+    // numが10~99であればtrueを，それ以外であればfalseを返す
+    private static boolean validateNum( int num ) {
+        if ( num >= 10 && num < 100 ) return false;
+        else return true;
     }
 }
