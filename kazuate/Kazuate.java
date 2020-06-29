@@ -34,7 +34,11 @@ public class Kazuate {
             int predictNum = 0;
             try {
                 predictNum = Integer.parseInt( bufferedReader.readLine() );
-            } catch (Exception e) {
+            } catch ( NumberFormatException e ) {
+                System.out.println( "2桁の正の整数を入力し直してください．" );
+                System.out.println( "----------------------------------" );
+                continue;
+            } catch ( Exception e ) {
                 System.out.println( "数値入力の際にエラーが発生しました．" );
                 System.out.println( "数当てゲームを終了します．" );
                 System.out.println( "----------------------------------" );
